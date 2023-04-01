@@ -96,12 +96,9 @@ object Functions extends App {
   def isPrime(n: Int): Boolean = {
     @tailrec
     def primeCheck(divisor: Int = 2): Boolean  = {
-      if (divisor > n / 2) true else {
-        if (n % divisor == 0) false else
-          {
-            primeCheck(divisor + 1)
-          }
-      }
+      if (divisor > n / 2) true
+      else if (n % divisor == 0) false
+      else primeCheck(divisor + 1)
     }
     primeCheck()
   }
