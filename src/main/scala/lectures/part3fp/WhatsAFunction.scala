@@ -25,7 +25,7 @@ object WhatsAFunction extends App {
 
   // type of adder = (Int, Int) => Int
   // syntactic sugar for Function2
-  val adder: (Int, Int => Int) = new Function2[Int, Int, Int] {
+  val adder: (Int, Int) => Int = new Function2[Int, Int, Int] {
     override def apply(a: Int, b: Int): Int = a + b
   }
 
