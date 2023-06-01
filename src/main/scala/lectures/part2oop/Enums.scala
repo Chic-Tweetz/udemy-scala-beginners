@@ -51,6 +51,4 @@ object Enums {
     println(somePermissionsOrdinal) // prints 0
   }
 
-
-
 }
