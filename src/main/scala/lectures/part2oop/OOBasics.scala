@@ -191,8 +191,6 @@ class Counter(val count: Int = 0) {
 
 }
 
-
-
 // name and age are parameters but NOT MEMBERS
 // CLASS PARAMETERS ARE NOT FIELDS!
 
