@@ -19,21 +19,6 @@ abstract class MyList[+A] {
 
   override def toString: String = "[" + printElements + "]"
 
-  def doop: MyList[A] = {
-    if (tail.isEmpty) new Cons[A](head, Empty)
-    else new Cons(head, tail.doop)
-  }
-
-// Flips it but it is tail recursive (also hey maybe you want to flip a list every now and then)
-// (Trying to figure out how to tail recurse a list copy function without flipping order!)
-  def reverse: MyList[A] = {
-    def helper(list: MyList[A], check: => MyList[A]): MyList[A] = {
-      if (check.isEmpty) list
-      else helper(new Cons[A](check.head, list), check.tail)
-    }
-    helper(Empty, this)
-  }
-
   // Concatenation
   def ++[B >: A](list: MyList[B]): MyList[B]
 
@@ -95,23 +80,30 @@ object ListTest extends App {
 
   val listOfStrings = new Cons("Hello", new Cons("world", Empty))
 
-  val transformer = new Function1[Int, MyList[Int]] {
-    override def apply(n: Int): MyList[Int] = {
-      new Cons[Int](n, new Cons[Int](n + 1, Empty))
-    }
-  }
+//  val transformer = new Function1[Int, MyList[Int]] {
+//    override def apply(n: Int): MyList[Int] = {
+//      new Cons[Int](n, new Cons[Int](n + 1, Empty))
+//    }
+//  }
+
+  val transformer = (n: Int) => new Cons[Int](n, new Cons[Int](n + 1, Empty))
 
   println(transformer(1).toString)
 
   println(listOfIntegers)
   println(listOfIntegers.flatMap(transformer).toString)
 
+//  val transformedOnTheSpot = listOfIntegers.flatMap(
+//    new Function1[Int, MyList[Int]] {
+//      override def apply(n: Int): MyList[Int] = {
+//        new Cons[Int](n, new Cons[Int](n * 2, new Cons[Int](n * 3, Empty)))
+//      }
+//    })
+
+  // lambda version:
   val transformedOnTheSpot = listOfIntegers.flatMap(
-    new Function1[Int, MyList[Int]] {
-      override def apply(n: Int): MyList[Int] = {
-        new Cons[Int](n, new Cons[Int](n * 2, new Cons[Int](n * 3, Empty)))
-      }
-    })
+    n => new Cons(n, new Cons(n * 2, new Cons(n * 3, Empty)))
+  )
 
   println(transformedOnTheSpot)
 
@@ -119,9 +111,18 @@ object ListTest extends App {
     override def apply(n: Int): Boolean = n % 3 == 0
   }))
 
+  // lambda version
+  println(transformedOnTheSpot.filter(_ % 3 == 0))
+
   // Now that we've made Cons and Empty case classes:
   val cloneListOfIntegers = new Cons(1, new Cons(2, new Cons(3, Empty))).add(4).add(5).add(6).add(7).add(8)
   // Equals is defined for us:
   println(cloneListOfIntegers == listOfIntegers) // true thanks to keyword case!
   // We would otherwise need to implement a recursive equality method
+
+  println(listOfIntegers.map(new Function1[Int, Int] {
+    override def apply(elem: Int): Int = elem * 2
+  }))
+
+  println(listOfIntegers.map(_ * 2)) // lambda
 }
