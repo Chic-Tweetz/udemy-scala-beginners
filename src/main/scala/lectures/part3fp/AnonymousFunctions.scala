@@ -8,7 +8,7 @@ object AnonymousFunctions extends App {
   }
 
   // Scala allows us to use the following syntax instead:
-  val doubler2 = (x: Int) => x * 2
+   val doubler2 = (x: Int) => x * 2
 
   // Syntactic sugar for all the FunctionX[Type1, ... , TypeN] { override def apply ... etc
   // This (the RHS after =) is called an Anonymous Function or Lambda
@@ -61,11 +61,11 @@ object AnonymousFunctions extends App {
   // 2
 
   // Original definition:
-  //  val superAdder: Function1[Int, Function[Int, Int]] = new Function1[Int, Function1[Int, Int]] {
-  //    override def apply(x: Int): Function1[Int, Int] = new Function1[Int, Int] {
-  //      override def apply(y: Int): Int = x + y
-  //    }
-  //  }
+//  val superAdder: Function1[Int, Function[Int, Int]] = new Function1[Int, Function1[Int, Int]] {
+//    override def apply(x: Int): Function1[Int, Int] = new Function1[Int, Int] {
+//      override def apply(y: Int): Int = x + y
+//    }
+//  }
 
   // Easiest to puzzle out:
   val sa = { (x: Int) =>

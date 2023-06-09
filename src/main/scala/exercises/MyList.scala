@@ -129,11 +129,11 @@ object ListTest extends App {
 
   val listOfStrings = new Cons("Hello", new Cons("world", Cons("scala!", Empty)))
 
-  //  val transformer = new Function1[Int, MyList[Int]] {
-  //    override def apply(n: Int): MyList[Int] = {
-  //      new Cons[Int](n, new Cons[Int](n + 1, Empty))
-  //    }
-  //  }
+//  val transformer = new Function1[Int, MyList[Int]] {
+//    override def apply(n: Int): MyList[Int] = {
+//      new Cons[Int](n, new Cons[Int](n + 1, Empty))
+//    }
+//  }
 
   val transformer = (n: Int) => new Cons[Int](n, new Cons[Int](n + 1, Empty))
 
@@ -142,12 +142,12 @@ object ListTest extends App {
   println(listOfIntegers)
   println(listOfIntegers.flatMap(transformer).toString)
 
-  //  val transformedOnTheSpot = listOfIntegers.flatMap(
-  //    new Function1[Int, MyList[Int]] {
-  //      override def apply(n: Int): MyList[Int] = {
-  //        new Cons[Int](n, new Cons[Int](n * 2, new Cons[Int](n * 3, Empty)))
-  //      }
-  //    })
+//  val transformedOnTheSpot = listOfIntegers.flatMap(
+//    new Function1[Int, MyList[Int]] {
+//      override def apply(n: Int): MyList[Int] = {
+//        new Cons[Int](n, new Cons[Int](n * 2, new Cons[Int](n * 3, Empty)))
+//      }
+//    })
 
   // lambda version:
   val transformedOnTheSpot = listOfIntegers.flatMap(

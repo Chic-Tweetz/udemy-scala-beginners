@@ -2,7 +2,7 @@ package lectures.part3fp
 
 object HOFsCurries extends App {
 
-  var superFunction: (Int, (String, (Int => Boolean)) => Int) => (Int => Int) = null
+   var superFunction: (Int, (String, (Int => Boolean)) => Int) => (Int => Int) = null
 
   // Higher Order Function (HOF)
 
