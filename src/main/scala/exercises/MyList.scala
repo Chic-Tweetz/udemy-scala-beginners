@@ -187,4 +187,11 @@ object ListTest extends App {
 
   println(aNewList.fold(0)(_ + _))
 
+  // for comprehension - works because we matched the map, flatMap, filter signatures!
+  println(for {
+    n <- listOfIntegers
+    string <- listOfStrings
+  } yield ("" + n + "+" + string))
+
+
 }
